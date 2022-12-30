@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:30:38 by gromero-          #+#    #+#             */
-/*   Updated: 2022/12/23 12:25:16 by gromero-         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:00:25 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"

@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 09:24:08 by gromero-          #+#    #+#             */
-/*   Updated: 2022/12/21 10:46:31 by gromero-         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:23:50 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -25,6 +25,6 @@ void	ft_push_pb(t_stack *a, t_stack *b)
 	b->max++;
 	b->array[b->max] = a->array[a->max];
 	a->array[a->max] = '\0';
-	a->max--;	
+	a->max--;
 	write (1, "pb\n", 3);
 }

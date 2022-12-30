@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 13:02:44 by gromero-          #+#    #+#             */
-/*   Updated: 2022/12/23 12:09:07 by gromero-         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:22:47 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -33,15 +33,17 @@ int	ft_find_smallest_move(int i, int *mov)
 {
 	int		acum;
 	int		j;
-	
+
 	acum = mov[i];
 	j = i;
 	while (--i >= 0)
+	{	
 		if (mov[i] < acum)
 		{
 			acum = mov[i];
 			j = i;
 		}
+	}
 	return (j);
 }
 
@@ -95,7 +97,7 @@ int	ft_index_max(int *lis, t_stack *a)
 	return (acum);
 }
 
-int ft_next_bigger(t_stack *a, int num_b)
+int	ft_next_bigger(t_stack *a, int num_b)
 {
 	int		i;
 	int		acum;
@@ -119,7 +121,7 @@ int	ft_verify_order(t_stack *a)
 	int		i;
 
 	i = -1;
-	while (++i <= a->max)
+	while (++i < a->max)
 		if (a->array[i] < a->array[i + 1])
 			return (1);
 	return (0);
