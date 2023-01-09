@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_utils_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 11:30:38 by gromero-          #+#    #+#             */
-/*   Updated: 2023/01/09 12:49:10 by gromero-         ###   ########.fr       */
+/*   Created: 2023/01/09 12:50:04 by gromero-          #+#    #+#             */
+/*   Updated: 2023/01/09 12:50:51 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
+int	ft_next_bigger(t_stack *a, int num_b)
 {
-	t_stack		*a;
-	t_stack		*b;
-	int			i;
+	int		i;
+	int		acum;
+	int		index;
 
-	ft_check_error(argv);
-	a = malloc (sizeof(t_stack));
-	b = malloc (sizeof(t_stack));
-	a->array = malloc ((argc - 1) * sizeof(int));
-	b->array = malloc ((argc - 1) * sizeof(int));
-	if (!a->array || !b->array)
-		return (0);
-	a->max = argc - 2;
-	b->max = -1;
+	i = a->max + 1;
+	acum = ft_find_bigger(a);
+	while (--i >= 0)
+	{
+		if (a->array[i] <= acum && num_b < a->array[i])
+		{
+			acum = a->array[i];
+			index = i;
+		}
+	}
+	return (index);
+}
+
+int	ft_verify_order(t_stack *a)
+{
+	int		i;
+
 	i = -1;
-	while (argv[++i])
-		a->array[i] = ft_atoi(argv[argc - 1 - i]);
-	ft_order_selection(a, b, argc);
+	while (++i < a->max)
+		if (a->array[i] < a->array[i + 1])
+			return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:03:15 by gromero-          #+#    #+#             */
-/*   Updated: 2022/12/21 10:56:42 by gromero-         ###   ########.fr       */
+/*   Updated: 2023/01/09 13:02:43 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -39,21 +39,21 @@ void	ft_order_3(t_stack *a)
 		ft_swap_sa(a);
 	else if (a->array[2] > a->array[1] && a->array[2] > a->array[0]
 		&& a->array[0] > a->array[1])
-		ft_rotate_ra(a);
+		ft_rotate_ra(a, 1);
 	else if (a->array[2] < a->array[1] && a->array[2] > a->array[0]
 		&& a->array[0] < a->array[1])
-		ft_reverse_rra(a);
+		ft_reverse_rra(a, 1);
 	else if (a->array[2] > a->array[1] && a->array[2] > a->array[0]
 		&& a->array[0] < a->array[1])
 	{	
 		ft_swap_sa(a);
-		ft_reverse_rra(a);
+		ft_reverse_rra(a, 1);
 	}
 	else if (a->array[2] < a->array[1] && a->array[2] < a->array[0]
 		&& a->array[0] < a->array[1])
 	{
 		ft_swap_sa(a);
-		ft_rotate_ra(a);
+		ft_rotate_ra(a, 1);
 	}
 }
 
@@ -64,13 +64,13 @@ void	ft_order_4(t_stack *a, t_stack *b)
 		ft_find_smallest(a);
 		if (a->index == 1)
 		{
-			ft_reverse_rra(a);
-			ft_reverse_rra(a);
+			ft_reverse_rra(a, 1);
+			ft_reverse_rra(a, 1);
 		}
 		else if (a->index == 2)
-			ft_rotate_ra(a);
+			ft_rotate_ra(a, 1);
 		else if (a->index == 0)
-			ft_reverse_rra(a);
+			ft_reverse_rra(a, 1);
 		ft_push_pb(a, b);
 		ft_order_3(a);
 		ft_push_pa(a, b);
@@ -83,19 +83,19 @@ void	ft_order_5(t_stack *a, t_stack *b)
 	{
 		ft_find_smallest(a);
 		if (a->index == 0)
-			ft_reverse_rra(a);
+			ft_reverse_rra(a, 1);
 		else if (a->index == 1)
 		{
-			ft_reverse_rra(a);
-			ft_reverse_rra(a);
+			ft_reverse_rra(a, 1);
+			ft_reverse_rra(a, 1);
 		}
 		else if (a->index == 2)
 		{
-			ft_rotate_ra(a);
-			ft_rotate_ra(a);
+			ft_rotate_ra(a, 1);
+			ft_rotate_ra(a, 1);
 		}
 		else if (a->index == 3)
-			ft_rotate_ra(a);
+			ft_rotate_ra(a, 1);
 		ft_push_pb(a, b);
 		ft_order_4(a, b);
 		ft_push_pa(a, b);

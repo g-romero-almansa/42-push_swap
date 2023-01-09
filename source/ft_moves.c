@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:58:10 by gromero-          #+#    #+#             */
-/*   Updated: 2022/12/30 10:29:59 by gromero-         ###   ########.fr       */
+/*   Updated: 2023/01/09 13:04:07 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -14,40 +14,25 @@
 void	ft_moves(t_stack *a, t_stack *b)
 {
 	int		i;
-//	int		j;
-//	int		k;
 
 	i = b->max + 1;
-	/*printf ("Stack A\n");
-	j = a->max + 1;
-	while (--j >= 0)
-		printf ("%d         \n", a->array[j]);
-	printf ("Stack B\n");
-	k = b->max + 1;
-	while (--k >= 0)
-		printf ("%d\n", b->array[k]);*/
 	while (--i >= 0)
-	{	
-		ft_do_moves(a, b, ft_moves_a(a, b), ft_moves_b(b), ft_find_smallest_move(b->max, ft_moves_ab(b, ft_moves_a(a, b), ft_moves_b(b))));
-		/*printf ("Stack A\n");
-		j = a->max + 1;
-		while (--j >= 0)
-			printf ("%d         \n", a->array[j]);
-		printf ("Stack B\n");
-		k = b->max + 1; 
-		while (--k >= 0)
-			printf ("%d\n", b->array[k]);*/
-	}
+		ft_do_moves(a, b, ft_moves_a(a, b), ft_moves_b(b));
 	ft_find_smallest(a);
 	while (ft_verify_order(a) == 1)
+	{
 		if (a->index >= (a->max / 2))
-			ft_rotate_ra(a);
+			ft_rotate_ra(a, 1);
 		else
-			ft_reverse_ra(a);
+			ft_reverse_rra(a, 1);
+	}
 }
 
-void	ft_do_moves(t_stack *a, t_stack *b, int *mov_a, int *mov_b, int index)
+void	ft_do_moves(t_stack *a, t_stack *b, int *mov_a, int *mov_b)
 {
+	int		index;
+
+	index = ft_find_smallest_move(b->max, ft_moves_ab(b, mov_a, mov_b));
 	while (mov_a[index] != 0 || mov_b[index] != 0)
 	{
 		if (mov_a[index] > 0 && mov_b[index] > 0)
@@ -60,15 +45,15 @@ void	ft_do_moves(t_stack *a, t_stack *b, int *mov_a, int *mov_b, int index)
 		{
 			mov_a[index] -= 1;
 			mov_b[index] += 1;
-			ft_rotate_ra(a);
-			ft_reverse_rrb(b);
+			ft_rotate_ra(a, 1);
+			ft_reverse_rrb(b, 1);
 		}
 		else if (mov_a[index] < 0 && mov_b[index] > 0)
 		{
 			mov_a[index] += 1;
 			mov_b[index] -= 1;
-			ft_reverse_rra(a);
-			ft_rotate_rb(b);
+			ft_reverse_rra(a, 1);
+			ft_rotate_rb(b, 1);
 		}
 		else if (mov_a[index] < 0 && mov_b[index] < 0)
 		{
@@ -79,22 +64,22 @@ void	ft_do_moves(t_stack *a, t_stack *b, int *mov_a, int *mov_b, int index)
 		else if (mov_a[index] > 0)
 		{
 			mov_a[index] -= 1;
-			ft_rotate_ra(a);
+			ft_rotate_ra(a, 1);
 		}
 		else if (mov_a[index] < 0)
 		{
 			mov_a[index] += 1;
-			ft_reverse_rra(a);
+			ft_reverse_rra(a, 1);
 		}
 		else if (mov_b[index] > 0)
 		{
 			mov_b[index] -= 1;
-			ft_rotate_rb(b);
+			ft_rotate_rb(b, 1);
 		}
 		else if (mov_b[index] < 0)
 		{
 			mov_b[index] += 1;
-			ft_reverse_rrb(b);
+			ft_reverse_rrb(b, 1);
 		}
 	}
 	ft_push_pa(a, b);

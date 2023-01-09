@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:42:14 by gromero-          #+#    #+#             */
-/*   Updated: 2022/12/28 11:51:17 by gromero-         ###   ########.fr       */
+/*   Updated: 2023/01/09 13:01:28 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		*ft_moves_a(t_stack *a, t_stack *b);
 
 int		*ft_moves_ab(t_stack *b, int *mov_a, int *mov_b);
 
-void	ft_do_moves(t_stack *a, t_stack *b, int *mov_a, int *mov_b, int index);
+void	ft_do_moves(t_stack *a, t_stack *b, int *mov_a, int *mov_b);
 
 void	ft_swap_sa(t_stack *a);
 
@@ -73,15 +73,15 @@ void	ft_push_pa(t_stack *a, t_stack *b);
 
 void	ft_push_pb(t_stack *a, t_stack *b);
 
-void	ft_rotate_ra(t_stack *a);
+void	ft_rotate_ra(t_stack *a, int wr);
 
-void	ft_rotate_rb(t_stack *b);
+void	ft_rotate_rb(t_stack *b, int wr);
 
 void	ft_rotate_rr(t_stack *a, t_stack *b);
 
-void	ft_reverse_rra(t_stack *a);
+void	ft_reverse_rra(t_stack *a, int wr);
 
-void	ft_reverse_rrb(t_stack *b);
+void	ft_reverse_rrb(t_stack *b, int wr);
 
 void	ft_reverse_rrr(t_stack *a, t_stack *b);
 

@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:12:22 by gromero-          #+#    #+#             */
-/*   Updated: 2022/12/21 13:19:32 by gromero-         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:57:08 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -62,7 +62,7 @@ void	ft_lis_to_b(t_stack *a, t_stack *b, int *seq, int max_seq)
 	{
 		if (seq[i] == a->array[a->max] && i <= max_seq)
 		{
-			ft_rotate_ra(a);
+			ft_rotate_ra(a, 1);
 			i++;
 		}
 		else
