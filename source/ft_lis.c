@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:12:22 by gromero-          #+#    #+#             */
-/*   Updated: 2023/01/09 12:57:08 by gromero-         ###   ########.fr       */
+/*   Updated: 2023/01/11 10:54:43 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -19,6 +19,8 @@ void	ft_get_seq(int *lis, int max_lis, t_stack *a, t_stack *b)
 
 	max_seq = max_lis - 1;
 	seq = (int *)malloc(max_lis * sizeof(int));
+	if (!seq)
+		return ;
 	i = -1;
 	while (++i <= a->max && max_lis > 0)
 	{
@@ -28,6 +30,7 @@ void	ft_get_seq(int *lis, int max_lis, t_stack *a, t_stack *b)
 			max_lis--;
 		}
 	}
+	free (lis);
 	ft_lis_to_b(a, b, seq, max_seq);
 }
 
@@ -37,7 +40,9 @@ void	ft_get_lis(t_stack *a, t_stack *b)
 	int		i;
 	int		j;
 
-	lis = (int *)malloc(a->max * sizeof(int));
+	lis = (int *)malloc((a->max + 1) * sizeof(int));
+	if (!lis)
+		return ;
 	i = a->max;
 	while (--i >= 0)
 	{
@@ -69,5 +74,6 @@ void	ft_lis_to_b(t_stack *a, t_stack *b, int *seq, int max_seq)
 			ft_push_pb(a, b);
 		j--;
 	}
+	free (seq);
 	ft_moves(a, b);
 }

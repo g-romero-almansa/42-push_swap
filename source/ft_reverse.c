@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:14:12 by gromero-          #+#    #+#             */
-/*   Updated: 2023/01/09 13:01:05 by gromero-         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:23:39 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -19,7 +19,7 @@ void	ft_reverse_rra(t_stack *a, int wr)
 
 	acum2 = a->array[0];
 	i = -1;
-	while (a->array[++i])
+	while (++i <= a->max)
 	{
 		if (i == a->max)
 			a->array[a->max] = acum2;
@@ -42,7 +42,7 @@ void	ft_reverse_rrb(t_stack *b, int wr)
 
 	acum2 = b->array[0];
 	i = -1;
-	while (b->array[++i])
+	while (++i <= b->max)
 	{
 		if (i == b->max)
 			b->array[b->max] = acum2;

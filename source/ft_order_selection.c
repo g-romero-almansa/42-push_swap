@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:03:15 by gromero-          #+#    #+#             */
-/*   Updated: 2023/01/09 13:02:43 by gromero-         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:18:31 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -17,8 +17,6 @@ void	ft_order_selection(t_stack *a, t_stack *b, int argc)
 		ft_order_2(a);
 	else if (argc == 4)
 		ft_order_3(a);
-	else if (argc == 5)
-		ft_order_4(a, b);
 	else if (argc == 6)
 		ft_order_5(a, b);
 	else if (argc > 6)

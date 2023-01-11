@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:58:10 by gromero-          #+#    #+#             */
-/*   Updated: 2023/01/09 13:04:07 by gromero-         ###   ########.fr       */
+/*   Updated: 2023/01/11 10:55:42 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -36,70 +36,37 @@ void	ft_do_moves(t_stack *a, t_stack *b, int *mov_a, int *mov_b)
 	while (mov_a[index] != 0 || mov_b[index] != 0)
 	{
 		if (mov_a[index] > 0 && mov_b[index] > 0)
-		{
-			mov_a[index] -= 1;
-			mov_b[index] -= 1;
 			ft_rotate_rr(a, b);
-		}
-		else if (mov_a[index] > 0 && mov_b[index] < 0)
-		{
+		else
+			ft_move_sup(a, b, mov_a, mov_b);
+		if (mov_a[index] > 0)
 			mov_a[index] -= 1;
-			mov_b[index] += 1;
-			ft_rotate_ra(a, 1);
-			ft_reverse_rrb(b, 1);
-		}
-		else if (mov_a[index] < 0 && mov_b[index] > 0)
-		{
-			mov_a[index] += 1;
-			mov_b[index] -= 1;
-			ft_reverse_rra(a, 1);
-			ft_rotate_rb(b, 1);
-		}
-		else if (mov_a[index] < 0 && mov_b[index] < 0)
-		{
-			mov_a[index] += 1;
-			mov_b[index] += 1;
-			ft_reverse_rrr(a, b);
-		}
-		else if (mov_a[index] > 0)
-		{
-			mov_a[index] -= 1;
-			ft_rotate_ra(a, 1);
-		}
 		else if (mov_a[index] < 0)
-		{
 			mov_a[index] += 1;
-			ft_reverse_rra(a, 1);
-		}
-		else if (mov_b[index] > 0)
-		{
+		if (mov_b[index] > 0)
 			mov_b[index] -= 1;
-			ft_rotate_rb(b, 1);
-		}
 		else if (mov_b[index] < 0)
-		{
 			mov_b[index] += 1;
-			ft_reverse_rrb(b, 1);
-		}
 	}
 	ft_push_pa(a, b);
+	free (mov_a);
+	free (mov_b);
 }
-int		*ft_moves_ab(t_stack *b, int *mov_a, int *mov_b)
+
+int	*ft_moves_ab(t_stack *b, int *mov_a, int *mov_b)
 {
 	int		*mov_ab;
 	int		i;
 
-	mov_ab = (int *)malloc(b->max * sizeof(int));
+	mov_ab = (int *)malloc((b->max + 1) * sizeof(int));
 	i = -1;
 	while (++i <= b->max)
 	{
 		if (mov_a[i] >= 0 && mov_b[i] >= 0)
-		{	
 			if (mov_a[i] > mov_b[i])
 				mov_ab[i] = mov_a[i];
-			else
-				mov_ab[i] = mov_b[i];
-		}
+		else
+			mov_ab[i] = mov_b[i];
 		else if (mov_a[i] >= 0 && mov_b[i] < 0)
 			mov_ab[i] = mov_a[i] + (mov_b[i] * -1);
 		else if (mov_a[i] < 0 && mov_b[i] >= 0)
@@ -110,17 +77,17 @@ int		*ft_moves_ab(t_stack *b, int *mov_a, int *mov_b)
 				mov_ab[i] = mov_b[i] * -1;
 			else
 				mov_ab[i] = mov_a[i] * -1;
-		}	
+		}
 	}
 	return (mov_ab);
 }
 
-int		*ft_moves_b(t_stack *b)
+int	*ft_moves_b(t_stack *b)
 {
 	int		*mov_b;
 	int		i;
 
-	mov_b = (int *)malloc(b->max * sizeof(int));
+	mov_b = (int *)malloc((b->max + 1) * sizeof(int));
 	i = b->max + 1;
 	while (--i >= 0)
 	{
@@ -132,23 +99,23 @@ int		*ft_moves_b(t_stack *b)
 	return (mov_b);
 }
 
-int		*ft_moves_a(t_stack *a, t_stack *b)
+int	*ft_moves_a(t_stack *a, t_stack *b)
 {
 	int		*mov_a;
 	int		i;
 	int		a_bigger;
 	int		index;
 
-	mov_a = (int *)malloc(b->max * sizeof(int));
+	mov_a = (int *)malloc((b->max + 1) * sizeof(int));
 	i = b->max + 1;
 	a_bigger = ft_find_bigger(a);
 	while (--i >= 0)
 	{
 		if (a_bigger < b->array[i])
 			if (a->index >= a->max / 2)
-				mov_a[i] = a->max - a->index + 1;	
-			else
-				mov_a[i] = -(a->index);
+				mov_a[i] = a->max - a->index + 1;
+		else
+			mov_a[i] = -(a->index);
 		else
 		{
 			index = ft_next_bigger(a, b->array[i]);

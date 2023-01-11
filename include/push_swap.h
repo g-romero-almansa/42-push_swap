@@ -6,7 +6,7 @@
 /*   By: gromero- <gromero-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:42:14 by gromero-          #+#    #+#             */
-/*   Updated: 2023/01/09 13:01:28 by gromero-         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:16:07 by gromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ void	ft_reverse_rrr(t_stack *a, t_stack *b);
 void	ft_check_error(char **argv);
 
 void	ft_error(int num);
+
+void	ft_move_sup(t_stack *a, t_stack *b, int *mov_a, int *mov_b);
 
 #endif
